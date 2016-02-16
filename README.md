@@ -58,3 +58,18 @@ forecast.get(latitude, longitude, options, function (err, res, data) {
   log('data: ' + util.inspect(data));
 });
 ```
+
+Additional 2:
+
+You can use `Forecast.get()` without creating any instance. The option can contain any parameters like `timeout` or `exclude`.
+
+```
+Forecast.get({
+  APIKey: process.env.FORECAST_API_KEY,
+  latitude: latitude,
+  longitude: longitude,
+  onsuccess: function(data) {
+    log('data: ' + util.inspect(data));
+  }
+});
+```

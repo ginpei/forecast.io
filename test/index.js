@@ -85,4 +85,18 @@ describe('Forecast', function () {
       });
     });
   });
+  describe('Forecast.get', function () {
+    it('should return data', function (done) {
+      Forecast.get({
+        APIKey: process.env.FORECAST_API_KEY,
+        latitude: latitude,
+        longitude: longitude,
+        onsuccess: function(data) {
+          log('data: ' + util.inspect(data));
+          data.should.not.equal.null;
+          done();
+        }
+      });
+    });
+  });
 });
