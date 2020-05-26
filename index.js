@@ -22,6 +22,22 @@ function Forecast (options) {
   this.url = 'https://api.forecast.io/forecast/' + options.APIKey + '/';
 }
 
+Forecast.get = function(options) {
+  var obj = new Forecast(options);
+  obj.get(options.latitude, options.longitude, options, function(err, res, data) {
+    if (err) {
+      if (options.onerror) {
+        options.onerror(err);
+      }
+      else {
+        throw err;
+      }
+    }
+    else {
+      options.onsuccess(data);
+    }
+  });
+}
 
 Forecast.prototype.buildUrl = function buildUrl (latitude, longitude, time, options) {
 
